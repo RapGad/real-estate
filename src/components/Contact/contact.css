@@ -3,6 +3,7 @@
   background: #f8f5f0;
   padding: 5rem 2rem;
   position: relative;
+  overflow: hidden;
 }
 
 .section-header {
@@ -38,7 +39,7 @@
   align-items: center;
 }
 
-.phone-graphic {
+.phone-animation {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +49,7 @@
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .form-group {
@@ -65,13 +66,11 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   background: transparent;
-  transition: all 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-bottom-color: #d7a56e;
 }
 
 .underline {
@@ -81,7 +80,9 @@
   width: 100%;
   height: 2px;
   background: #d7a56e;
+  transform: scaleX(0);
   transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
 button[type="submit"] {
@@ -97,73 +98,20 @@ button[type="submit"] {
   margin-top: 1rem;
 }
 
-.contact-info {
-  grid-column: span 2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.info-item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.icon {
-  background: #221c35;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.text h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  color: #221c35;
-  margin-bottom: 0.5rem;
-}
-
-.text p {
-  font-family: 'Montserrat', sans-serif;
-  color: #6d6d6d;
-  font-size: 0.9rem;
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .contact-container {
     grid-template-columns: 1fr;
   }
   
-  .phone-graphic {
+  .phone-animation {
     order: 2;
-  }
-  
-  .contact-info {
-    grid-template-columns: 1fr;
+    margin-top: 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .luxury-contact {
     padding: 3rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .info-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 }

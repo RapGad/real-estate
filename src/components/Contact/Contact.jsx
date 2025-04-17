@@ -5,8 +5,8 @@ import './contact.css';
 
 const Contact = () => {
   const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false
+    threshold: 0.2,
+    triggerOnce: true
   });
 
   const controls = useAnimation();
@@ -17,35 +17,29 @@ const Contact = () => {
     }
   }, [controls, inView]);
 
-  const phoneVariants = {
-    hidden: { rotate: -10, opacity: 0 },
+  // SVG path animation variants
+  const pathVariants = {
+    hidden: { pathLength: 0, opacity: 0 },
     visible: {
-      rotate: 0,
+      pathLength: 1,
       opacity: 1,
       transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    },
-    hover: {
-      rotate: [0, -5, 5, 0],
-      transition: {
-        duration: 0.8,
-        repeat: Infinity
+        duration: 1.5,
+        ease: "easeInOut"
       }
     }
   };
 
-  const formVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
+  // Element animation variants
+  const elementVariants = {
+    hidden: { opacity: 0 },
+    visible: (i) => ({
       opacity: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        delay: i * 0.3,
+        duration: 0.8
       }
-    }
+    })
   };
 
   return (
@@ -56,107 +50,117 @@ const Contact = () => {
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
         >
-          Get In <span>Touch</span>
+          Contact <span>Us</span>
         </motion.h2>
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Our team is ready to assist with your luxury real estate needs
+          Reach out to our luxury property specialists
         </motion.p>
       </div>
 
       <div className="contact-container">
         {/* Animated Phone SVG */}
-        <motion.div
-          className="phone-graphic"
+        <motion.div 
+          className="phone-animation"
           initial="hidden"
           animate={controls}
-          variants={phoneVariants}
-          whileHover="hover"
         >
-          <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
-            {/* Phone Base */}
-            <motion.rect
-              x="50"
-              y="30"
-              width="200"
-              height="240"
-              rx="30"
-              fill="#F8F5F0"
+          <svg width="300" height="500" viewBox="0 0 300 500" fill="none">
+            {/* Phone Outline - Draws itself */}
+            <motion.path
+              d="M80 50H220C235 50 247 62 247 77V423C247 438 235 450 220 450H80C65 450 53 438 53 423V77C53 62 65 50 80 50Z"
               stroke="#221C35"
-              strokeWidth="4"
-              variants={{
-                hidden: { pathLength: 0 },
-                visible: { pathLength: 1 }
-              }}
+              strokeWidth="6"
+              strokeLinecap="round"
+              variants={pathVariants}
             />
             
-            {/* Screen */}
+            {/* Screen - Fades in */}
             <motion.rect
               x="70"
-              y="50"
+              y="70"
               width="160"
-              height="180"
-              rx="10"
+              height="280"
+              rx="5"
               fill="#221C35"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              custom={1}
+              variants={elementVariants}
             />
             
-            {/* Camera */}
+            {/* Camera - Pops in */}
             <motion.circle
               cx="150"
-              cy="70"
-              r="5"
+              cy="90"
+              r="6"
               fill="#D7A56E"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.4, type: "spring" }}
+              custom={2}
+              variants={elementVariants}
             />
             
-            {/* Speaker */}
-            <motion.rect
-              x="130"
-              y="65"
-              width="40"
-              height="4"
-              rx="2"
-              fill="#F8F5F0"
-              initial={{ width: 0 }}
-              animate={{ width: 40 }}
-              transition={{ delay: 0.5 }}
+            {/* Speaker - Draws horizontally */}
+            <motion.path
+              d="M120 85H180"
+              stroke="#F8F5F0"
+              strokeWidth="3"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={controls}
+              transition={{ delay: 0.9, duration: 0.5 }}
             />
             
-            {/* Home Button */}
-            <motion.circle
-              cx="150"
-              cy="240"
-              r="15"
-              fill="none"
+            {/* Home Button - Draws circle */}
+            <motion.path
+              d="M150 420C158 420 165 413 165 405C165 397 158 390 150 390C142 390 135 397 135 405C135 413 142 420 150 420Z"
               stroke="#D7A56E"
               strokeWidth="3"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.6, type: "spring" }}
+              fill="none"
+              variants={pathVariants}
             />
             
-            {/* Call Icon */}
+            {/* Call Icon - Draws itself */}
             <motion.path
-              d="M150 160L170 140L180 150L160 170L150 160Z"
+              d="M150 250L180 220L190 230L160 260L150 250Z"
               fill="#D7A56E"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ delay: 0.7 }}
+              custom={3}
+              variants={elementVariants}
             />
             <motion.path
-              d="M150 160L130 140L120 150L140 170L150 160Z"
+              d="M150 250L120 220L110 230L140 260L150 250Z"
               fill="#D7A56E"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ delay: 0.8 }}
+              custom={3.3}
+              variants={elementVariants}
+            />
+            
+            {/* Signal Bars - Sequential animation */}
+            <motion.rect
+              x="200"
+              y="100"
+              width="8"
+              height="15"
+              fill="#D7A56E"
+              custom={4}
+              variants={elementVariants}
+            />
+            <motion.rect
+              x="213"
+              y="95"
+              width="8"
+              height="20"
+              fill="#D7A56E"
+              custom={4.3}
+              variants={elementVariants}
+            />
+            <motion.rect
+              x="226"
+              y="90"
+              width="8"
+              height="25"
+              fill="#D7A56E"
+              custom={4.6}
+              variants={elementVariants}
             />
           </svg>
         </motion.div>
@@ -164,42 +168,41 @@ const Contact = () => {
         {/* Contact Form */}
         <motion.div
           className="contact-form"
-          initial="hidden"
-          animate={controls}
-          variants={formVariants}
-          transition={{ delay: 0.3 }}
+          initial={{ y: 50, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : {}}
+          transition={{ delay: 0.4 }}
         >
           <form>
             <div className="form-group">
-              <input type="text" placeholder="Name" required />
+              <input type="text" placeholder="Your Name" required />
               <motion.div 
                 className="underline"
                 whileHover={{ scaleX: 1 }}
-                initial={{ scaleX: 0 }}
+                initial={{ scaleX: 0, originX: 0 }}
               />
             </div>
             <div className="form-group">
-              <input type="email" placeholder="Email" required />
+              <input type="email" placeholder="Email Address" required />
               <motion.div 
                 className="underline"
                 whileHover={{ scaleX: 1 }}
-                initial={{ scaleX: 0 }}
+                initial={{ scaleX: 0, originX: 0 }}
               />
             </div>
             <div className="form-group">
-              <input type="tel" placeholder="Phone" />
+              <input type="tel" placeholder="Phone Number" />
               <motion.div 
                 className="underline"
                 whileHover={{ scaleX: 1 }}
-                initial={{ scaleX: 0 }}
+                initial={{ scaleX: 0, originX: 0 }}
               />
             </div>
             <div className="form-group">
-              <textarea placeholder="Message" rows="4" required></textarea>
+              <textarea placeholder="Your Message" rows="4" required></textarea>
               <motion.div 
                 className="underline"
                 whileHover={{ scaleX: 1 }}
-                initial={{ scaleX: 0 }}
+                initial={{ scaleX: 0, originX: 0 }}
               />
             </div>
             <motion.button
@@ -214,70 +217,11 @@ const Contact = () => {
             </motion.button>
           </form>
         </motion.div>
-
-        {/* Contact Info */}
-        <motion.div
-          className="contact-info"
-          initial="hidden"
-          animate={controls}
-          variants={formVariants}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="info-item">
-            <motion.div 
-              className="icon"
-              whileHover={{ rotate: 15 }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="#D7A56E" strokeWidth="2"/>
-              </svg>
-            </motion.div>
-            <div className="text">
-              <h4>Our Office</h4>
-              <p>123 Luxury Avenue, Beverly Hills, CA 90210</p>
-            </div>
-          </div>
-          
-          <div className="info-item">
-            <motion.div 
-              className="icon"
-              whileHover={{ rotate: 15 }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M22 16.92V19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V16.92" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M22 6V8C22 8.53043 21.7893 9.03914 21.4142 9.41421C21.0391 9.78929 20.5304 10 20 10H4C3.46957 10 2.96086 9.78929 2.58579 9.41421C2.21071 9.03914 2 8.53043 2 8V6" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M18 6V3C18 2.46957 17.7893 1.96086 17.4142 1.58579C17.0391 1.21071 16.5304 1 16 1H8C7.46957 1 6.96086 1.21071 6.58579 1.58579C6.21071 1.96086 6 2.46957 6 3V6" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M22 6H2V16H22V6Z" stroke="#D7A56E" strokeWidth="2"/>
-              </svg>
-            </motion.div>
-            <div className="text">
-              <h4>Email Us</h4>
-              <p>info@luxuryestates.com</p>
-            </div>
-          </div>
-          
-          <div className="info-item">
-            <motion.div 
-              className="icon"
-              whileHover={{ rotate: 15 }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M22 16.92V19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V16.92" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M22 6V8C22 8.53043 21.7893 9.03914 21.4142 9.41421C21.0391 9.78929 20.5304 10 20 10H4C3.46957 10 2.96086 9.78929 2.58579 9.41421C2.21071 9.03914 2 8.53043 2 8V6" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M18 6V3C18 2.46957 17.7893 1.96086 17.4142 1.58579C17.0391 1.21071 16.5304 1 16 1H8C7.46957 1 6.96086 1.21071 6.58579 1.58579C6.21071 1.96086 6 2.46957 6 3V6" stroke="#D7A56E" strokeWidth="2"/>
-                <path d="M22 6H2V16H22V6Z" stroke="#D7A56E" strokeWidth="2"/>
-              </svg>
-            </motion.div>
-            <div className="text">
-              <h4>Call Us</h4>
-              <p>+1 (310) 555-LUXE</p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
 };
+
+
 
 export default Contact
