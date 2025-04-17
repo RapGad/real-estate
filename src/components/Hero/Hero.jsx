@@ -1,6 +1,6 @@
 import { motion, stagger, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
-import './Hero.css';
+import './hero.css';
 
 const Hero = () => {
   const [scope, animate] = useAnimate();
