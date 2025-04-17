@@ -1,0 +1,336 @@
+
+
+.luxury-showcase {
+    max-width: 1400px;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .featured-section-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #221c35;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-title span{
+    color: #d7a56e;
+    font-style: italic;
+  }
+  
+  .header-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    color: hsl(0, 0%, 43%);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .header-divider {
+    height: 3px;
+    background-color: #000;
+    width: 100px;
+    margin: 0 auto;
+    transform-origin: left;
+  }
+  
+  /* Featured Section */
+  .featured-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+  
+  .featured-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+  }
+  
+  
+  .featured-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    
+
+  }
+  
+  .luxury-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(34, 28, 53, 0.7) 0%,
+      rgba(34, 28, 53, 0.3) 100%
+    );
+    z-index: 2;
+  }
+  
+  .featured-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem;
+    color: white;
+    max-width: 1200px;
+    margin: -75px auto;
+    z-index: 3;
+  }
+  
+  /* Rest of your existing CSS remains the same */
+  .featured-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  
+  .price-location {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  
+  .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #d7a56e;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .location {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .features {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .features i {
+    color: #d7a56e;
+    margin-right: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .description {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .view-details {
+    background: #d7a56e;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    align-self: flex-start;
+  }
+  
+  /* Thumbnail Navigation */
+  .thumbnail-track {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    right: 0;
+    display: flex;
+    gap: 1rem;
+    padding: 0 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    justify-content: center;
+    z-index: 4;
+    scroll-padding-left: 2rem; /* 👈 KEY fix */
+    
+
+
+  }
+  .thumbnail-track::before {
+    content: '';
+    flex: 0 0 6rem; /* match your left padding */
+  }
+  
+  .thumbnail-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .thumbnail-card {
+    flex: 0 0 120px;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .thumbnail-card.active {
+    transform: translateY(-20px);
+  }
+  
+  .thumbnail-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .thumbnail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .active-indicator {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    background: #d7a56e;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+  
+  .thumbnail-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.8rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+  }
+  
+  .thumbnail-details h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.3rem;
+  }
+  
+  .thumbnail-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #d7a56e;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .featured-content {
+      padding: 2rem;
+      margin: -25px auto;
+    }
+    
+    .price-location {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .thumbnail-track {
+      justify-content: flex-start;
+      top: 40%;
+      bottom: 1rem;
+    }
+    
+    .thumbnail-card {
+      flex: 0 0 100px;
+      height: 100px;
+    }
+    
+    .thumbnail-card.active {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Header Styles */
+
+
+
+
+.header-divider {
+  width: 100px;
+  height: 2px;
+  background: #d7a56e;
+  margin: 1rem auto;
+  transform-origin: center;
+}
+
+/* Responsive adjustments for header */
+@media (max-width: 768px) {
+  .section-header {
+    padding: 1.5rem 0;
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.8rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.9rem;
+  }
+}
+  
+  @media (max-width: 480px) {
+    .featured-content {
+      padding: 1.5rem;
+    }
+    
+    .features {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+
+
+  

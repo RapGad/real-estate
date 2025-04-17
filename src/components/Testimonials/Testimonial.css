@@ -1,0 +1,167 @@
+/* Testimonials.css */
+.luxury-testimonials {
+    padding: 5rem 2rem;
+    background: #f8f5f0;
+    position: relative;
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    color: #221c35;
+    margin-bottom: 0.5rem;
+  }
+  
+  .section-header h2 span {
+    color: #d7a56e;
+    font-style: italic;
+  }
+  
+  .section-header p {
+    font-family: 'Montserrat', sans-serif;
+    color: #6d6d6d;
+    font-size: 1.1rem;
+  }
+  
+  .testimonial-container {
+    width: 100%;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .testimonial-track {
+    display: flex;
+    width: 100%;
+    will-change: transform;
+  }
+  
+  .testimonial-card {
+    flex: 0 0 100%;
+    padding: 0 1rem;
+  }
+  
+  .testimonial-content {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .quote-mark {
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: #d7a56e;
+    opacity: 0.2;
+    line-height: 1;
+  }
+  
+  .quote {
+    font-family: 'Montserrat', serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .client-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .client-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #d7a56e;
+  }
+  
+  .client-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .client-details h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #221c35;
+    margin-bottom: 0.3rem;
+  }
+  
+  .role {
+    font-family: 'Montserrat', sans-serif;
+    color: #6d6d6d;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .rating {
+    color: #d7a56e;
+  }
+  
+  .testimonial-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  
+  .nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d7a56e;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .nav-dot.active {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .luxury-testimonials {
+      padding: 3rem 1rem;
+    }
+    
+    .testimonial-content {
+      padding: 2rem;
+    }
+    
+    .quote {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .client-info {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .client-details {
+      text-align: center;
+    }
+  }
